@@ -26,9 +26,9 @@ class Category extends Model implements SluggableInterface
 
     protected $validator;
 
-    public function categorizable()
+    public function posts()
     {
-        return $this->morphTo();
+        return $this->morphedByMany('\CodePress\CodePost\Models\Post', 'categorizable', 'codepress_cotegorizables');
     }
 
     public function parent()
@@ -51,7 +51,7 @@ class Category extends Model implements SluggableInterface
 
         $validator->setData($this->getAttributes());
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $this->errors = $validator->errors();
             return false;
         }

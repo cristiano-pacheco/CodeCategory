@@ -4,6 +4,7 @@ namespace CodePress\CodeCategory\Tests\Models;
 
 use CodePress\CodeCategory\Models\Category;
 use CodePress\CodeCategory\Tests\AbstractTestCase;
+use CodePress\CodePost\Models\Post;
 use Illuminate\Validation\Validator;
 use Mockery as m;
 
@@ -104,5 +105,27 @@ class CodeCategory extends AbstractTestCase
         $this->assertEquals('Category Test', $child->name);
         $this->assertEquals('Parent Test', $category->parent->name);
 
+    }
+
+    public function test_can_add_posts_to_categories()
+    {
+        $category = Category::create(['name' => 'Category Test', 'active' => true]);
+
+        $post1 = Post::create(['title' => 'Post 1', 'content' => 'Content 1']);
+
+        $post2 = Post::create(['title' => 'Post 2', 'content' => 'Content 2']);
+
+        $post1->category()->save($category);
+        $post2->category()->save($category);
+
+        $this->assertCount(1,Category::all());
+
+        $this->assertEquals('Category Test', $post1->category->first()->name);
+        $this->assertEquals('Category Test', $post2->category->first()->name);
+
+        $posts = Category::find(1)->posts;
+        $this->assertCount(2, $posts);
+        $this->assertEquals('Post 1', $posts[0]->title);
+        $this->assertEquals('Post 2', $posts[1]->title);
     }
 }
