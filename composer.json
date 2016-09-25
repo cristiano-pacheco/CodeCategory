@@ -1,0 +1,23 @@
+{
+  "name":"cristianopacheco/code-category",
+  "require": {
+    "php" : ">=5.5.9",
+    "illuminate/contracts": "5.2.*",
+    "illuminate/http": "5.2.*",
+    "illuminate/support": "5.2.*",
+    "illuminate/database": "5.2.*",
+    "illuminate/validation": "5.2.*",
+    "cviebrock/eloquent-sluggable":"^3.0",
+    "cristianopacheco/code-database": "~0.0.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~5.0",
+    "orchestra/testbench": "~3.0",
+    "mockery/mockery": "~0.9.2"
+  },
+  "autoload": {
+    "psr-4":{
+      "CodePress\\CodeCategory\\": "src/CodeCategory/"
+    }
+  }
+}
