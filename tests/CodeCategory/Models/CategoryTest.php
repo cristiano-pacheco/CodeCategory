@@ -115,13 +115,13 @@ class CodeCategory extends AbstractTestCase
 
         $post2 = Post::create(['title' => 'Post 2', 'content' => 'Content 2']);
 
-        $post1->category()->save($category);
-        $post2->category()->save($category);
+        $post1->categories()->save($category);
+        $post2->categories()->save($category);
 
         $this->assertCount(1,Category::all());
 
-        $this->assertEquals('Category Test', $post1->category->first()->name);
-        $this->assertEquals('Category Test', $post2->category->first()->name);
+        $this->assertEquals('Category Test', $post1->categories->first()->name);
+        $this->assertEquals('Category Test', $post2->categories->first()->name);
 
         $posts = Category::find(1)->posts;
         $this->assertCount(2, $posts);
