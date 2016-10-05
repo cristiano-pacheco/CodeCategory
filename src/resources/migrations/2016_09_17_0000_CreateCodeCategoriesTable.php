@@ -16,6 +16,7 @@ class CreateCodeCategoriesTable extends Migration
             $table->boolean('active')->default('false');
             $table->integer('categorizable_id')->nullable();
             $table->string('categorizable_type')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

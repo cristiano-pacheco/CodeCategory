@@ -7,12 +7,13 @@ namespace CodePress\CodeCategory\Models;
 use Cviebrock\EloquentSluggable\SluggableInterface;
 use Cviebrock\EloquentSluggable\SluggableTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Validation\Validator;
 
 class Category extends Model implements SluggableInterface
 {
 
-    use SluggableTrait;
+    use SluggableTrait, SoftDeletes;
 
     protected $table = "codepress_categories";
 
